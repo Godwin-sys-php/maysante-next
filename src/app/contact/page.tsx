@@ -1,11 +1,49 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function Contact() {
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("");
+    const fd = new FormData(e.currentTarget);
+    const data = {
+      nom: fd.get("nom") as string,
+      telephone: fd.get("telephone") as string,
+      email: fd.get("email") as string,
+      message: fd.get("message") as string,
+    };
+
+    if (!data.nom || !data.email || !data.message) {
+      setError("Veuillez remplir tous les champs obligatoires.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error();
+      setSuccess(true);
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      setError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -19,41 +57,58 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-16">
             <div>
               <h2 className="text-2xl text-foreground mb-6">Envoyez-nous un message</h2>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label className="text-sm text-foreground block mb-1.5">Nom complet</label>
-                  <input
-                    type="text"
-                    className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-                    placeholder="Votre nom"
-                  />
+
+              {success ? (
+                <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-green-800 text-sm">
+                  ✅ Votre message a bien été envoyé. Nous vous répondrons rapidement !
                 </div>
-                <div>
-                  <label className="text-sm text-foreground block mb-1.5">Téléphone</label>
-                  <input
-                    type="tel"
-                    className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-                    placeholder="04XX XX XX XX"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-foreground block mb-1.5">Email</label>
-                  <input
-                    type="email"
-                    className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-                    placeholder="votre@email.be"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-foreground block mb-1.5">Message</label>
-                  <textarea
-                    rows={4}
-                    className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none"
-                    placeholder="Décrivez votre besoin..."
-                  />
-                </div>
-                <Button type="submit" className="w-full">Envoyer</Button>
-              </form>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div>
+                    <label className="text-sm text-foreground block mb-1.5">Nom complet *</label>
+                    <input
+                      name="nom"
+                      type="text"
+                      required
+                      className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="Votre nom"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-foreground block mb-1.5">Téléphone</label>
+                    <input
+                      name="telephone"
+                      type="tel"
+                      className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="04XX XX XX XX"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-foreground block mb-1.5">Email *</label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="votre@email.be"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-foreground block mb-1.5">Message *</label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      required
+                      className="w-full border border-border rounded px-3 py-2 text-sm bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                      placeholder="Décrivez votre besoin..."
+                    />
+                  </div>
+                  {error && <p className="text-sm text-destructive">{error}</p>}
+                  <Button type="submit" className="w-full" disabled={submitting}>
+                    {submitting ? "Envoi…" : "Envoyer"}
+                  </Button>
+                </form>
+              )}
             </div>
 
             <div>

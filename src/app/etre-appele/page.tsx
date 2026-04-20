@@ -44,7 +44,7 @@ export default function EtreAppele() {
   const [careType, setCareType] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
     const formData = new FormData(e.currentTarget);
@@ -66,14 +66,27 @@ export default function EtreAppele() {
     }
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await fetch("/api/etre-appele", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+      if (!res.ok) throw new Error();
       toast({
         title: "Demande envoyée",
         description: "Nous vous rappelons dans les plus brefs délais.",
       });
       router.push("/");
-    }, 600);
+    } catch {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
