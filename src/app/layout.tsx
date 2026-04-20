@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
+import { SanityLive } from "@/sanity/live";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={plusJakartaSans.variable}>
         <Providers>{children}</Providers>
+        <SanityLive />
       </body>
     </html>
   );
