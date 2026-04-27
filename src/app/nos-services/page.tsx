@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import { Stethoscope, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Nos services",
+  description:
+    "Soins infirmiers à domicile (pansements, injections, perfusions, stomie…) et garde malade de jour et de nuit à Bruxelles. Prise en charge personnalisée 7j/7.",
+  alternates: { canonical: "https://maysante.be/nos-services" },
+};
 import gardeImg from "@/assets/garde-malade.jpg";
 import soinsImg from "@/assets/soins-infirmiers.jpg";
 
@@ -47,7 +55,7 @@ export default function NosServices() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <div className="pt-14">
+      <main className="pt-14">
         <div className="max-w-6xl mx-auto px-5 py-16">
           <h1 className="text-4xl text-foreground mb-3">Nos services</h1>
           <p className="text-muted-foreground max-w-lg mb-16">
@@ -96,7 +104,7 @@ export default function NosServices() {
             ))}
           </div>
         </div>
-      </div>
+      </main>
       <CTASection />
       <Footer />
     </div>
