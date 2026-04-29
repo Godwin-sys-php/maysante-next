@@ -15,7 +15,7 @@ export function emailWrapper(content: string) {
           ${content}
         </div>
         <div style="padding:16px 28px;border-top:1px solid #e5e5e5;background:#f9f9f9">
-          <p style="margin:0;font-size:11px;color:#b0b0b0">Corporus Software — Notification automatique Maysanté</p>
+          <p style="margin:0;font-size:11px;color:#b0b0b0">Corporus, LLC — Notification automatique Maysanté</p>
         </div>
       </div>
     </div>
