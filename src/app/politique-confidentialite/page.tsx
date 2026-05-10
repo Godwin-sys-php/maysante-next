@@ -94,8 +94,7 @@ export default function PolitiqueConfidentialite() {
               Sous-traitants techniques utilisés :
             </p>
             <ul>
-              <li><strong>Vercel Inc.</strong> (États-Unis) — hébergement du site, sous garanties contractuelles types (SCC).</li>
-              <li><strong>DigitalOcean LLC</strong> (États-Unis) — hébergement du serveur d'analyse Umami et de la plateforme admin, sous garanties contractuelles types (SCC).</li>
+              <li><strong>DigitalOcean LLC</strong> (siège : États-Unis ; datacenter : Amsterdam) — hébergement du site, du serveur d'analyse Umami et de la plateforme admin, sous garanties contractuelles types (SCC).</li>
               <li><strong>Resend</strong> — envoi des emails de notification.</li>
               <li><strong>Sanity</strong> — gestion de contenu (articles de blog).</li>
             </ul>

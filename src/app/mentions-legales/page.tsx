@@ -46,20 +46,16 @@ export default function MentionsLegales() {
 
             <h2>2. Hébergement</h2>
             <p>
-              Le site est hébergé par :
+              Le site <strong>maysante.be</strong> ainsi que l'instance d'analyse d'audience{" "}
+              <strong>analytics.maysante.be</strong> (Umami auto-hébergé) sont hébergés sur un
+              serveur loué auprès de :
             </p>
             <ul>
-              <li><strong>Vercel Inc.</strong></li>
-              <li>340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis</li>
-              <li><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></li>
+              <li><strong>DigitalOcean LLC</strong></li>
+              <li>101 Avenue of the Americas, 10th Floor, New York, NY 10013, États-Unis</li>
+              <li><a href="https://www.digitalocean.com" target="_blank" rel="noopener">digitalocean.com</a></li>
+              <li>Localisation du datacenter : Amsterdam (Pays-Bas)</li>
             </ul>
-            <p>
-              Les services d'analyse d'audience sont assurés en interne via une instance{" "}
-              <strong>Umami</strong> auto-hébergée sur le serveur{" "}
-              <strong>analytics.maysante.be</strong>, hébergée sur un VPS{" "}
-              <strong>DigitalOcean LLC</strong> (101 Avenue of the Americas, 10th Floor,
-              New York, NY 10013, États-Unis — <a href="https://www.digitalocean.com" target="_blank" rel="noopener">digitalocean.com</a>).
-            </p>
 
             <h2>3. Activité réglementée</h2>
             <p>
