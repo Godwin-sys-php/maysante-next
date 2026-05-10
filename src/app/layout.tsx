@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Providers from "@/components/providers";
 import { SanityLive } from "@/sanity/live";
+import StickyCallButton from "@/components/StickyCallButton";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -127,6 +128,7 @@ export default function RootLayout({
       </head>
       <body className={plusJakartaSans.variable}>
         <Providers>{children}</Providers>
+        <StickyCallButton />
         <SanityLive />
         {umamiUrl && umamiWebsiteId && (
           <Script
