@@ -4,7 +4,7 @@ import logo from "@/assets/logo.webp";
 const Footer = () => (
   <footer className="border-t border-border py-10">
     <div className="max-w-6xl mx-auto px-5">
-      <div className="grid md:grid-cols-5 gap-8 mb-8">
+      <div className="grid md:grid-cols-4 gap-8 mb-8">
         <div className="md:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-3">
             <img src={logo.src} alt="Maysanté" className="h-10 w-auto" />
@@ -35,18 +35,11 @@ const Footer = () => (
             <li>Disponible 7j/7</li>
           </ul>
         </div>
-
-        <div>
-          <p className="text-xs uppercase tracking-wide text-muted-foreground mb-3">Légal</p>
-          <ul className="space-y-1.5 text-sm">
-            <li><Link href="/mentions-legales" className="text-foreground hover:text-primary transition-colors">Mentions légales</Link></li>
-            <li><Link href="/politique-confidentialite" className="text-foreground hover:text-primary transition-colors">Politique de confidentialité</Link></li>
-          </ul>
-        </div>
       </div>
 
-      <div className="border-t border-border pt-6 text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Maysanté. Tous droits réservés.
+      <div className="border-t border-border pt-6 text-xs text-muted-foreground flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <span>© {new Date().getFullYear()} Maysanté. Tous droits réservés.</span>
+        <span>TVA BE 1020.419.214</span>
       </div>
     </div>
   </footer>
