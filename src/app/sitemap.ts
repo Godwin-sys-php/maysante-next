@@ -1,18 +1,11 @@
 import type { MetadataRoute } from "next";
-import { client } from "@/sanity/client";
-import { defineQuery } from "next-sanity";
+import { getPublishedSlugs } from "@/lib/articles";
 import { communes } from "@/lib/communes";
-
-const SLUGS_QUERY = defineQuery(`*[
-  _type == "article"
-  && defined(slug.current)
-  && status == "published"
-] { "slug": slug.current, publishedAt }`);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://maysante.be";
 
-  const posts = await client.fetch<{ slug: string; publishedAt: string | null }[]>(SLUGS_QUERY);
+  const posts = await getPublishedSlugs();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
@@ -33,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+    lastModified: post.published_at ? new Date(post.published_at) : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Providers from "@/components/providers";
-import { SanityLive } from "@/sanity/live";
 import StickyCallButton from "@/components/StickyCallButton";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -74,7 +73,7 @@ const jsonLd = {
         "Soins infirmiers et garde malade à domicile à Bruxelles et périphérie. Disponible 7j/7.",
       url: BASE_URL,
       telephone: "+32456872138",
-      email: "contact@maysante.be",
+      email: "info@maysante.be",
       logo: `${BASE_URL}/icon.png`,
       image: `${BASE_URL}/opengraph-image.png`,
       priceRange: "$$",
@@ -129,7 +128,6 @@ export default function RootLayout({
       <body className={plusJakartaSans.variable}>
         <Providers>{children}</Providers>
         <StickyCallButton />
-        <SanityLive />
         {umamiUrl && umamiWebsiteId && (
           <Script
             src={`${umamiUrl}/script.js`}

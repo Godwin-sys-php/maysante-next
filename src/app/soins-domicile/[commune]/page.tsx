@@ -53,7 +53,7 @@ export default async function CommunePage({
       "@type": ["LocalBusiness", "MedicalBusiness"],
       name: "Maysanté",
       telephone: "+32456872138",
-      email: "contact@maysante.be",
+      email: "info@maysante.be",
       url: "https://maysante.be",
     },
     areaServed: {

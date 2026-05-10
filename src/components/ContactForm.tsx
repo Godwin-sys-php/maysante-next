@@ -121,7 +121,7 @@ export default function ContactForm() {
             <Mail className="w-4 h-4 text-primary mt-0.5 shrink-0" />
             <div>
               <p className="text-sm font-medium text-foreground">Email</p>
-              <p className="text-sm text-muted-foreground">contact@maysante.be</p>
+              <p className="text-sm text-muted-foreground">info@maysante.be</p>
             </div>
           </div>
           <div className="flex gap-3">
